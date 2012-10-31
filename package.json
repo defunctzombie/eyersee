@@ -1,0 +1,22 @@
+{
+  "name": "eyersee",
+  "version": "0.0.0",
+  "private": true,
+  "description": "IRC for the browser",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "moment": "1.7.2",
+    "inherits": "1.0.0",
+    "script": "0.1.0-pre",
+    "split": "0.1.0",
+    "bamboo": "0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Roman Shtylman <shtylman@gmail.com>",
+  "license": "MIT"
+}

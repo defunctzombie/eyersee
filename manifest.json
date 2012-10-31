@@ -1,0 +1,26 @@
+{
+  "name": "eyersee",
+  "description": "IRC in a browser",
+  "version": "0.0.0",
+  "manifest_version": 2,
+  "permissions": [
+    {
+      "socket": [
+        "tcp-connect"
+      ]
+    },
+    "storage"
+  ],
+  "app": {
+    "background": {
+      "scripts": [
+        "background.js"
+      ]
+    }
+  },
+  "icons": {
+    "16": "img/logo/logo16.png",
+    "48": "img/logo/logo48.png",
+    "128": "img/logo/logo128.png"
+  }
+}
