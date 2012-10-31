@@ -6,7 +6,6 @@ all: build
 	cp -r ui build/
 	cp -r img build/
 	cp -r css build/
-	cp lib/jquery.js build/
 
 build:
 	mkdir build
