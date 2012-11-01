@@ -52,6 +52,7 @@ var ChatRoom = function(parent, channel) {
         var msg = msg_input.value();
 
         // we won't see our own messages, so we need to add them
+        // TODO(shtylman) our nick name?
         add_chat_message('me', msg);
 
         // say what you mean, mean what you say ;)

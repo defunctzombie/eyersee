@@ -28,7 +28,7 @@ var ServerRoom = function(parent, server) {
 
         // message
         new Panel(message_widget)
-            .text(msg)
+            .text(msg.args.join(' '))
             .add_class('msg');
 
         msgs.push(message_widget);
@@ -38,48 +38,46 @@ var ServerRoom = function(parent, server) {
         chat_messages._elem.scrollTop = chat_messages._elem.scrollHeight;
     }
 
-    server.on('NOTICE', function(prefix, params) {
-        add_message(params);
+    server.on('NOTICE', function(msg) {
+        add_message(msg);
     });
 
-    server.on('001', function(prefix, params) {
-        add_message(params);
+    server.on('001', function(msg) {
+        add_message(msg);
     });
 
-    server.on('002', function(prefix, params) {
-        add_message(params);
+    server.on('002', function(msg) {
+        add_message(msg);
     });
 
-    server.on('003', function(prefix, params) {
-        add_message(params);
+    server.on('003', function(msg) {
+        add_message(msg);
     });
 
-    server.on('004', function(prefix, params) {
-        add_message(params);
+    server.on('004', function(msg) {
+        add_message(msg);
     });
 
-    server.on('005', function(prefix, params) {
-        add_message(params);
+    server.on('005', function(msg) {
+        add_message(msg);
     });
 
-    server.on('372', function(prefix, params) {
-        add_message(params);
+    server.on('372', function(msg) {
+        add_message(msg);
     });
 
-    server.on('376', function(prefix, params) {
-        add_message(params);
+    server.on('376', function(msg) {
+        add_message(msg);
     });
 
-    server.on('MODE', function(prefix, params) {
-        add_message(params);
+    server.on('MODE', function(msg) {
+        add_message(msg);
     });
 
     ui['message-form'].on('submit', function(event) {
-
         var msg = msg_input.value();
 
-        // we won't see our own messages, so we need to add them
-        add_message('me', msg);
+        // TODO(shtylman) show our requested messages?
 
         // say what you mean, mean what you say ;)
         server.send(msg);

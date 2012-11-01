@@ -7,7 +7,7 @@ var JoinServer = function(parent) {
 
     var ui = App.ui('ui/servers')(self);
 
-    ui.connect.on('click', function() {
+    var join = function() {
 
         // hide the join server panel
         self.hide();
@@ -17,7 +17,10 @@ var JoinServer = function(parent) {
         var username = ui.username.value();
 
         self.emit('connect', host, username);
-    });
+    };
+
+    ui['connect-form'].on('submit', join);
+    ui.connect.on('click', join);
 
     /*
     // emitted when the widget is shown
