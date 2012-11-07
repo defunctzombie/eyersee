@@ -1,14 +1,13 @@
-var Panel = require('bamboo').widgets.Panel;
+var Widget = require('bamboo').widgets.Widget;
 var App = require('bamboo').core.App;
 
-var ChannelList = function(parent) {
-    ChannelList.super.call(this, parent);
+var ChannelList = function(parent, element) {
+    ChannelList.super.call(this, parent, element);
 
     var self = this;
     self.rooms = {};
 };
-// make ChannelList a widget
-Panel.extend(ChannelList);
+Widget.extend(ChannelList);
 
 ChannelList.prototype.set_model = function(list_model) {
     var self = this;
@@ -43,7 +42,7 @@ ChannelList.prototype.set_model = function(list_model) {
         li.unread.hide();
         li.unread.text(0);
 
-        var ui = li._ui;
+        var ui = li['channel-item'];
 
         self.on('selected', function(item) {
             if (item.name !== room.name) {
@@ -58,7 +57,14 @@ ChannelList.prototype.set_model = function(list_model) {
             li.name.remove_class('unread');
         });
 
-        li._ui.on('click', function() {
+        li.leave.on('click', function() {
+            // TODO
+            // leave the channel (wait for part msg?)
+            // unregister event handlers
+            ui.remove();
+        });
+
+        ui.on('click', function(ev) {
             // TODO(shtylman) already selected?
             self.select(room);
         });
@@ -70,7 +76,8 @@ ChannelList.prototype.set_model = function(list_model) {
         var li = rooms[room];
 
         // remove ourselves
-        li.remove();
+        // hm... this is complex since again.. li isn't one item that was added
+        //li.remove();
     });
 };
 

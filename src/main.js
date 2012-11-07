@@ -48,7 +48,6 @@ var Main = function(parent) {
     // servers widget
     ui.servers.on('connect', function(host, username) {
         ui['channel-list'].show();
-
         self.new_connection(host, username);
     });
 
@@ -62,12 +61,13 @@ Main.prototype.new_connection = function(host, username) {
     var ui = self.ui;
 
     var port = 6667;
-    var irc_server = new IrcServer(host, port, username);
+    //var irc_server = new IrcServer(host, port, username);
+    var irc_server = new DummyIrcServer();
 
     //self.servers[host] = irc_server;
 
     irc_server.on('joined', function(channel) {
-        var room = new ChatRoom(ui['chat-panel'], channel);
+        var room = new ChatRoom(ui['chat-panel'], null, channel);
 
         self.rooms_list.add({
             name: channel.name,
@@ -77,7 +77,7 @@ Main.prototype.new_connection = function(host, username) {
     });
 
     // for server messages
-    var room = new ServerRoom(ui['chat-panel'], irc_server);
+    var room = new ServerRoom(ui['chat-panel'], null, irc_server);
 
     // add a server room
     self.rooms_list.add({

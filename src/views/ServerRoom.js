@@ -1,13 +1,13 @@
-var Panel = require('bamboo').widgets.Panel;
+var Widget = require('bamboo').widgets.Widget;
 var App = require('bamboo').core.App;
 
 var moment = require('moment');
 
-var ServerRoom = function(parent, server) {
-    ServerRoom.super.call(this, parent);
+var ServerRoom = function(parent, element, server) {
+    ServerRoom.super.call(this, parent, element);
     var self = this;
 
-    var ui = App.ui('ui/ServerRoom')(self);
+    var ui = App.ui('ui/ChatRoom')(self);
 
     var msg_input = ui['message-input'];
     var chat_messages = ui['chat-messages'];
@@ -17,17 +17,17 @@ var ServerRoom = function(parent, server) {
     var msgs = [];
 
     function add_message(msg) {
-        var message_widget = new Panel(ui['chat-messages']);
+        var message_widget = new Widget(ui['chat-messages'], null);
 
         message_widget.add_class('chat-msg');
 
         // timestamp
-        new Panel(message_widget)
+        new Widget(message_widget)
             .text(moment().format('HH:mm'))
             .add_class('timestamp');
 
         // message
-        new Panel(message_widget)
+        new Widget(message_widget)
             .text(msg.args.join(' '))
             .add_class('msg');
 
@@ -89,6 +89,6 @@ var ServerRoom = function(parent, server) {
     self.add_class('server-room');
 };
 // make ServerRoom a widget
-Panel.extend(ServerRoom);
+Widget.extend(ServerRoom);
 
 module.exports = ServerRoom;

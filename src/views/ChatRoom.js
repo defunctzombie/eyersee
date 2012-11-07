@@ -1,17 +1,15 @@
-var Panel = require('bamboo').widgets.Panel;
+var Widget = require('bamboo').widgets.Widget;
 var App = require('bamboo').core.App;
 
 var moment = require('moment');
 
-var ChatRoom = function(parent, channel) {
-    ChatRoom.super.call(this, parent);
+var ChatRoom = function(parent, element, channel) {
+    ChatRoom.super.call(this, parent, element);
     var self = this;
 
     self.channel = channel;
 
     var ui = App.ui('ui/ChatRoom')(self);
-
-    ui['room-name'].text(channel.name);
 
     var msg_input = ui['message-input'];
     var chat_messages = ui['chat-messages'];
@@ -21,26 +19,14 @@ var ChatRoom = function(parent, channel) {
     var msgs = [];
 
     function add_chat_message(from, msg) {
-        var message_widget = new Panel(ui['chat-messages']);
+        var message = ui.ui['chat-message'](ui['chat-messages']);
 
-        message_widget.add_class('chat-msg');
+        message.timestamp.text(moment().format('HH:mm'));
+        message.nick.text(from + ':');
+        message.msg.text(msg);
 
-        // timestamp
-        new Panel(message_widget)
-            .text(moment().format('HH:mm'))
-            .add_class('timestamp');
-
-        // nick
-        new Panel(message_widget)
-            .text(from + ':')
-            .add_class('nick');
-
-        // message
-        new Panel(message_widget)
-            .text(msg)
-            .add_class('msg');
-
-        msgs.push(message_widget);
+        // TODO(shtylman) push line widget to be able to remvoe it later
+        //msgs.push(message_widget);
 
         // scroll to bottom of the chat messages
         // TODO(shtylman) should not have to access _elem
@@ -73,6 +59,6 @@ var ChatRoom = function(parent, channel) {
     });
 };
 // make ChatRoom a widget
-Panel.extend(ChatRoom);
+Widget.extend(ChatRoom);
 
 module.exports = ChatRoom;

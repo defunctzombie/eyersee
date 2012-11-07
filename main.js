@@ -11,8 +11,7 @@ var ui_files = [
     'ui/main',
     'ui/ChannelItem',
     'ui/servers',
-    'ui/ChatRoom',
-    'ui/ServerRoom',
+    'ui/ChatRoom'
 ];
 
 var env = App.init({
@@ -22,5 +21,9 @@ var env = App.init({
 
 // environment loaded
 env.on('init', function() {
+
+    // TODO(shtylman) chrome storage for user settings
+    // username, autoconnect servers, etc?
+
     var main = new Main();
 });

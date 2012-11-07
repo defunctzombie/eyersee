@@ -1,13 +1,17 @@
-<h1 id="room-name"></h1>
-<hr/>
-
 <!-- chat messages go here -->
 <div id="chat-messages">
 </div>
 
 <div class="message-form">
-    <hr/>
     <form id="message-form">
         <input id="message-input" type="text" placeholder="say wha?"/>
     </form>
 </div>
+
+<script type="x-bamboo" name="chat-message">
+    <div class="chat-msg">
+        <div class="timestamp" id="timestamp"></div>
+        <div class="nick" id="nick"></div>
+        <div class="msg" id="msg"></div>
+    </div>
+</script>
