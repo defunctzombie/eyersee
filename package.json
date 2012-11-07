@@ -11,7 +11,8 @@
     "inherits": "1.0.0",
     "script": "0.1.0-pre",
     "split": "0.1.0",
-    "bamboo": "0.0.0"
+    "bamboo": "0.0.0",
+    "chrome-socket": "0.0.0"
   },
   "devDependencies": {},
   "scripts": {
