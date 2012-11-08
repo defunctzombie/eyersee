@@ -1,5 +1,5 @@
 all: build
-	./node_modules/.bin/bundle main.js > build/main.js
+	./node_modules/.bin/browserify main.js > build/main.js
 	cp manifest.json build/
 	cp main.html build/
 	cp background.js build/
