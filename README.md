@@ -12,16 +12,26 @@ The only way to install this current is from source. If this scares you, this pr
 
 You will need:
 
-* nodejs
-* google chrome (latest version, maybe even the dev channel)
+* nodejs (0.8+)
+* google chrome (latest version, maybe even the dev/canary channel)
 * some basic reasoning skills
 
-Install:
+## Install:
 
-* `git clone` this repo
-* `npm install` to get some dependencies
-* `make`
-* `load unpacked extension` in Chrome on the generated `build` directory
+### prebuilt
+
+1. download https://github.com/downloads/shtylman/eyersee/eyersee.crx
+1. open chrome://extensions in google chrome
+1. drag and drop the downloaded file onto the extensions page
+
+You should now have an icon in your Chrome Apps (or just type `eyersee` in the omnibox) to launch the app.
+
+### from source
+
+1. `git clone` this repo
+1. `npm install` to get some dependencies
+1. `make`
+1. `load unpacked extension` in Chrome on the generated `build` directory
 
 You should now have an icon in your Chrome Apps (or just type `eyersee` in the omnibox) to launch the app.
 
