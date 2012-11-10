@@ -1,13 +1,22 @@
+@import url("/css/normalize.css");
+@import url("/css/button.css");
+@import url("/css/input.css");
+@import url("/css/toggle_list.css");
+
 * {
     font-family: "Helvetica Neue", Helvetica, Arian, sans serif;
     font-size: 16px;
 
+    /** enable selecting text */
     -webkit-user-select: text;
+
+    /** make sizing not suck */
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     background-color: #dfe3eb;
 }
 
@@ -36,39 +45,6 @@ body {
     height: 100%;
     box-shadow: 1px 0px 10px #cccfd6;
     position: absolute;
-}
-
-.channel-list-item {
-    position: relative;
-    padding: 5px;
-    background-color: #f2f2f2;
-    border: 0px;
-    border-top: 1px solid #fcfcfc;
-    border-bottom: 1px solid #dcd7d4;
-    height: 30px;
-}
-
-.channel-list-item:hover .leave {
-    display: block;
-}
-
-#channel-list .selected {
-    border: 0px;
-    border-top: 1px solid #e8e8e8;
-    border-bottom: 1px solid #a3a6bc;
-    background: -webkit-gradient(linear, center top, center bottom, from(#c8d0de), to(#b2bccc));
-}
-
-.channel-list-name {
-    font-weight: 400;
-}
-
-.channel-list-item .unread {
-    font-weight: bold;
-}
-
-.channel-list-unread {
-    float: right;
 }
 
 .chat-room {
@@ -130,16 +106,6 @@ hr {
     box-shadow: inset 0 10px 10px -5px rgb(183, 183, 185);
 }
 
-input {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1px solid #b2b5bd;
-    border-radius: 2px;
-    height: 24px;
-    padding: 2px;
-}
-
 #message-form input {
     border: 1px solid #b2b5bd;
     border-radius: 12px;
@@ -169,44 +135,15 @@ input {
     margin: auto auto;
 }
 
-#servers .server {
-}
-
-button {
-    background-color: whiteSmoke;
-    background-image: linear-gradient(top, whiteSmoke, #f1f1f1);
-    border: 1px solid #dcdcdc;
-    border-radius: 2px;
-    margin: 4px;
-    padding: 0 18px 0 18px;
-    color: #444;
+.toggle-list-item .unread {
     font-weight: bold;
-    font-size: 11px;
-    line-height: 27px;
-    outline: none;
-    text-align: center;
 }
 
-button:hover {
-    color: #333;
-    border-color: #c6c6c6;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+.channel-list-name {
+    font-weight: 400;
 }
 
-.leave {
-    display: none;
-    position: absolute;
-    right: 10px;
-    top: 13px;
-    text-align: center;
-    background-color: #ddd;
-    padding-left: 1px;
-    line-height: 12px;
-    font-weight: bold;
-    font-size: 12px;
-    border-radius: 12px;
-    height: 12px;
-    width: 12px;
-    color: #444;
-    border: 1px solid #bbb;
+.channel-list-unread {
+    float: right;
 }
+

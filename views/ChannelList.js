@@ -62,6 +62,18 @@ ChannelList.prototype.set_model = function(list_model) {
             // leave the channel (wait for part msg?)
             // unregister event handlers
             ui.remove();
+
+            // ask the room to close itself
+            room.close();
+
+            var next = Object.keys(rooms).shift();
+            if (next) {
+                // TODO(shtylman) simulate click? select next item?
+                //rooms[next].click();
+            }
+
+            // remove the room
+            delete rooms[room];
         });
 
         ui.on('click', function(ev) {

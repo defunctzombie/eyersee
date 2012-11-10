@@ -11,7 +11,7 @@
     "inherits": "1.0.0",
     "split": "0.1.0",
     "bamboo": "0.0.1-pre0",
-    "chrome-socket": "0.0.0",
+    "chrome-socket": "0.0.1",
     "abe": "0.0.0",
     "browserify": "1.16.1"
   },

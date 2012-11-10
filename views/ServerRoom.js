@@ -62,7 +62,51 @@ var ServerRoom = function(parent, element, server) {
         add_message(msg);
     });
 
+    server.on('251', function(msg) {
+        add_message(msg);
+    });
+
+    server.on('252', function(msg) {
+        add_message(msg);
+    });
+
+    server.on('253', function(msg) {
+        add_message(msg);
+    });
+
+    server.on('254', function(msg) {
+        add_message(msg);
+    });
+
+    server.on('255', function(msg) {
+        add_message(msg);
+    });
+
+    server.on('265', function(msg) {
+        add_message(msg);
+    });
+
+    server.on('266', function(msg) {
+        add_message(msg);
+    });
+
+    server.on('250', function(msg) {
+        add_message(msg);
+    });
+
+    server.on('353', function(msg) {
+        add_message(msg);
+    });
+
+    server.on('366', function(msg) {
+        add_message(msg);
+    });
+
     server.on('372', function(msg) {
+        add_message(msg);
+    });
+
+    server.on('375', function(msg) {
         add_message(msg);
     });
 
@@ -74,10 +118,23 @@ var ServerRoom = function(parent, element, server) {
         add_message(msg);
     });
 
+    // if nothing handled the command, then inform the user
+    server.on('message', function(msg) {
+        if (server.listeners(msg.cmd).length > 0) {
+            return;
+        }
+
+        //self.emit('error', new Error('unhandled command (' + msg.cmd + ') report to @defunctzombie plz'));
+    });
+
     ui['message-form'].on('submit', function(event) {
         var msg = msg_input.value();
 
         // TODO(shtylman) show our requested messages?
+        // if leading '/' then send as raw msg
+        if (msg.charAt(0) === '/') {
+            msg = msg.slice(1);
+        }
 
         // say what you mean, mean what you say ;)
         server.send(msg);

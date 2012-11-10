@@ -33,29 +33,52 @@ var ChatRoom = function(parent, element, channel) {
         chat_messages._elem.scrollTop = chat_messages._elem.scrollHeight;
     }
 
+    function add_message(msg) {
+        var message = ui.ui['chat-message'](ui['chat-messages']);
+
+        message.timestamp.text(moment().format('HH:mm'));
+        //message.nick.text();
+        message.msg.text(msg);
+
+        chat_messages._elem.scrollTop = chat_messages._elem.scrollHeight;
+    }
+
     ui['message-form'].on('submit', function(event) {
 
         var msg = msg_input.value();
 
-        // we won't see our own messages, so we need to add them
-        // TODO(shtylman) our nick name?
-        add_chat_message('me', msg);
+        // clear the value
+        msg_input.value('');
+
+        // if leading '/' then send as msg verbatim
+        if (msg.charAt(0) === '/') {
+            return channel.send(msg.slice(1));
+        }
 
         // say what you mean, mean what you say ;)
         channel.say(msg);
 
-        // clear the value
-        msg_input.value('');
+        // TODO(shtylman) our nick name?
+        add_chat_message('me', msg);
     });
 
     self.add_class('chat-room');
 
-    channel.on('msg', function(from, msg) {
-
-        add_chat_message(from, msg);
+    channel.on('privmsg', function(msg) {
+        var from = msg.nick;
+        add_chat_message(from, msg.args[1]);
 
         // notify outsiders that we got a new message
         self.emit('msg');
+    });
+
+    channel.on('mode', function(msg) {
+        console.log(msg);
+        add_message('Mode: ' + msg.args.join(' '));
+    });
+
+    channel.on('joined', function(nick) {
+        // TODO(shtylman) user joined
     });
 };
 // make ChatRoom a widget

@@ -1,0 +1,48 @@
+/** circular close button */
+.close {
+    width: 14px;
+    height: 14px;
+    text-align: center;
+    line-height: 12px;
+    font-size: 10px;
+    border-radius: 10px;
+    display: none;
+    color: #f4f4f4;
+    background-color: #c7c7c7;
+    box-shadow: inset 1px 1px 4px #b5b5b5, 1px 1px #fdfdfd;
+}
+
+.toggle-list-item {
+    position: relative;
+    padding: 5px;
+    background-color: #f2f2f2;
+    border: 0px;
+    border-top: 1px solid #fcfcfc;
+    border-bottom: 1px solid #dcd7d4;
+    height: 50px;
+    color: #050505;
+}
+
+.toggle-list-item.selected .close {
+    color: #bfc7d6;
+    background-color: #9099a6;
+    box-shadow: inset 1px 1px 4px #9190a7, 1px 1px #c6d6e4;
+}
+
+.toggle-list-item:hover .close {
+    display: block;
+}
+
+.toggle-list-item .close {
+    position: absolute;
+    top: 18px;
+    right: 10px;
+}
+
+.toggle-list-item.selected {
+    border: 0px;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #a3a6bc;
+    background: -webkit-gradient(linear, center top, center bottom, from(#c8d0de), to(#b2bccc));
+}
+
