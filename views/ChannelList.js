@@ -1,8 +1,8 @@
 var Widget = require('bamboo').widgets.Widget;
 var App = require('bamboo').core.App;
 
-var ChannelList = function(parent, element) {
-    ChannelList.super.call(this, parent, element);
+var ChannelList = function(element) {
+    ChannelList.super.call(this, element);
 
     var self = this;
     self.rooms = {};
@@ -21,7 +21,7 @@ ChannelList.prototype.set_model = function(list_model) {
     list_model.on('added', function(room) {
 
         // add the widget to ourselves
-        var li = ListItem(self);
+        var li = ListItem().render_to(self);
 
         // set display items
         li.name.text(room.name);

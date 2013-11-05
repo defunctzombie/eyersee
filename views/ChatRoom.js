@@ -4,12 +4,12 @@ var App = require('bamboo').core.App;
 var moment = require('moment');
 
 var ChatRoom = function(parent, element, channel) {
-    ChatRoom.super.call(this, parent, element);
+    ChatRoom.super.call(this, element);
     var self = this;
 
     self.channel = channel;
 
-    var ui = App.ui('ui/ChatRoom')(self);
+    var ui = App.ui('ui/ChatRoom')().render_to(self);
 
     var msg_input = ui['message-input'];
     var chat_messages = ui['chat-messages'];

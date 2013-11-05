@@ -1,11 +1,11 @@
 var Widget = require('bamboo').widgets.Widget;
 var App = require('bamboo').core.App;
 
-var JoinServer = function(parent, element) {
-    JoinServer.super.call(this, parent, element);
+var JoinServer = function(element) {
+    JoinServer.super.call(this, element);
     var self = this;
 
-    var ui = App.ui('ui/servers')(self);
+    var ui = App.ui('ui/servers')();
 
     var join = function() {
 
@@ -33,6 +33,9 @@ var JoinServer = function(parent, element) {
 
     ui['connect-form'].on('submit', join);
     ui.connect.on('click', join);
+
+    // append to outsevles
+    ui.render_to(self);
 };
 Widget.extend(JoinServer);
 

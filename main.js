@@ -49,7 +49,7 @@ var Main = function(parent) {
 
     // render the ui onto parent and return the ui object
     // the ui object contains all of the widgets in the rendered ui
-    var ui = self.ui = App.ui('ui/main')(parent);
+    var ui = self.ui = App.ui('ui/main')();
 
     // list emits events when items are added or removed
     self.rooms_list = new List();
@@ -89,6 +89,8 @@ var Main = function(parent) {
     // show the widget
     ui.servers.show();
     ui['channel-list'].hide();
+
+    ui.render_to(document.body);
 };
 
 Main.prototype.new_connection = function(host, username) {
@@ -117,7 +119,9 @@ Main.prototype.new_connection = function(host, username) {
 
     irc_server.on('joined', function(channel) {
 
-        var room = new ChatRoom(ui['chat-panel'], null, channel);
+        var room = new ChatRoom(null, channel);
+
+        ui['chat-panel'].add_child(room);
 
         self.rooms_list.add({
             name: channel.name,
@@ -147,7 +151,9 @@ Main.prototype.new_connection = function(host, username) {
     });
 
     // for server messages
-    var room = new ServerRoom(ui['chat-panel'], null, irc_server);
+    var room = new ServerRoom(null, irc_server);
+
+    ui['chat-panel'].add_child(room);
 
     // add a server room
     self.rooms_list.add({
@@ -171,3 +177,11 @@ Main.prototype.new_connection = function(host, username) {
     });
 };
 
+/*
+var notification = webkitNotifications.createNotification(
+    null,
+    'Hello!',  // notification title
+    'Lorem ipsum...'  // notification body text
+);
+notification.show();
+*/
